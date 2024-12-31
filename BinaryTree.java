@@ -1,3 +1,4 @@
+import java.util.*;
 class Node{
     int data;
     Node left;
@@ -57,6 +58,26 @@ public class BinaryTree{
             System.out.print(root.data + " ");
         }
     }
+    public void bfs(){
+        if(root == null){
+            System.out.println("Tree is empty.");
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+            Node current = queue.poll();
+            System.out.print(current.data + " ");
+
+            if(current.left != null){
+                queue.add(current.left);
+            }
+            if(current.right != null){
+                queue.add(current.right);
+            }
+        }
+    }
 }
 class Main{
     public static void main(String[] args){
@@ -77,6 +98,9 @@ class Main{
         System.out.println();
         System.out.print("The postorder traversal is: ");
         tree.postorder();
+        System.out.println();
+        System.out.print("The BFS (Level Order) traversal is: ");
+        tree.bfs();
     }
 }
 
@@ -84,3 +108,4 @@ class Main{
 // The inorder traversal is: 2 5 7 8 10 12 15 
 // The preorder traversal is: 8 7 2 5 12 10 15 
 // The postorder traversal is: 5 2 7 10 15 12 8 
+// The BFS (Level Order) traversal is: 8 7 12 2 10 15 5 
